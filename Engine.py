@@ -2,6 +2,17 @@ import os
 
 import pickle
 
+import PySimpleGUI as ui
+
+
+class Gui:
+
+    def __init__(self):
+
+        self.layout = ''
+
+        self.window = ui.Window('Finder').Layout(self.layout)
+
 
 class file_finder:
 
