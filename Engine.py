@@ -12,23 +12,25 @@ class Gui:
     def __init__(self):
 
         self.layout = [
-            [ui.Text("Search Term", size=(10, 1)), ui.Input(size=(45, 1), focus=True),
+            [ui.Text("Search Term", size=(10, 1)),
 
-             ui.Radio('Contains', group_id='choice'),
+             ui.Input(size=(45, 1), focus=True, key="TERM"),
 
-             ui.Radio('StartsWith', group_id='choice'),
+             ui.Radio('Contains', group_id='choice', key="CONTAINS"),
 
-             ui.Radio('EndsWith', group_id='choice')],
+             ui.Radio('StartsWith', group_id='choice', key="STARTSWITH"),
+
+             ui.Radio('EndsWith', group_id='choice', key="ENDSWITH")],
 
              [ui.Text('Root Path', size=(10, 1)),
 
-              ui.Input('c:/', size=(45, 1)),
+              ui.Input('C:/', size=(45, 1), key="FOLDER_PATH"),
 
               ui.FolderBrowse('Browse'),
 
-              ui.Button('Re-Index', size=(10, 1)),
+              ui.Button('Re-Index', size=(10, 1), key="REINDEX_DATA"),
 
-              ui.Button('Search', size=(10, 1), bind_return_key=True)],
+              ui.Button('Search', size=(10, 1), key="FINDER")],
 
              [ui.Output(size=(180, 40))]
         ]
@@ -116,6 +118,10 @@ def test_gui():
 
     gui = Gui()
 
-    gui.window.Read()
+    while True:
+
+        event, values = gui.window.Read()
+
+        print(event, values)
 
 test_gui()
