@@ -18,7 +18,9 @@ class Gui:
 
              ui.Radio('EndsWith', group_id='choice')],
 
-             [ui.Text('Root Path'), ui.FolderBrowse('Browse'), ui.Button('Re-Index'), ui.Button('Search')]
+             [ui.Text('Root Path'), ui.FolderBrowse('Browse'), ui.Button('Re-Index'), ui.Button('Search')],
+
+             [ui.Output(size=(180, 40))]
         ]
 
         self.window = ui.Window('Finder').Layout(self.layout)
