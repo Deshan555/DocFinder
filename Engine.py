@@ -1,4 +1,3 @@
-
 import os
 
 import pickle
@@ -20,7 +19,7 @@ class file_finder:
 
         """" create new index file and save that file """
 
-        self.file_index = [(root, files)for root, dirs, files in os.walk(root_path) if files]
+        self.file_index = [(root, files) for root, dirs, files in os.walk(root_path) if files]
 
         """" save that file with details"""
 
@@ -28,4 +27,14 @@ class file_finder:
 
             pickle.dump(self.file_index, source_file)
 
+    def load_existing_index(self):
+
+        try:
+            with open("file_index.pkl", 'rb') as source_file:
+
+                self.file_index = pickle.load(source_file)
+        except:
+            self.file_index = []
+
+    def search(self, term, search_options = 'contains'):
 
