@@ -4,7 +4,7 @@ import pickle
 
 import PySimpleGUI as ui
 
-ui.change_look_and_feel('Dark')
+ui.change_look_and_feel('DarkGray14')
 
 
 class Gui:
@@ -35,7 +35,7 @@ class Gui:
              [ui.Output(size=(180, 40))]
         ]
 
-        self.window = ui.Window('Finder').Layout(self.layout)
+        self.window = ui.Window('DocFinder').Layout(self.layout)
 
 
 class file_finder:
@@ -109,35 +109,51 @@ class file_finder:
                 file_source.write(row + '\n')
 
 
-def main():
-    ''' The main loop for the program '''
-    g = Gui()
+def mains():
+
+    gui = Gui()
+
     s = file_finder()
+
     s.load_existing_index() # load if exists, otherwise return empty list
 
     while True:
-        event, values = g.window.read()
+
+        event, values = gui.window.read()
 
         if event is None:
             break
+
         if event == 'REINDEX_DATA':
+
             s.new_index(values)
+
             print()
-            print(">> New index created")
+
+            print(">> index_files.pkl created")
+
             print()
+
         if event == 'FINDER':
+
             s.search(values)
 
-            # print the results to output element
             print()
+
             for result in s.results:
+
                 print(result)
 
             print()
-            print(">> Searched {:,d} records and found {:,d} matches".format(s.records, s.matches))
-            print(">> Results saved in working directory as search_results.txt.")
 
+            print(">> Searched {:,d} records and found {:,d} matches".format(s.records, s.matches))
+
+            print(">> Local Files Working Finely")
+
+# Run File
 
 if __name__ == '__main__':
+
     print('Starting program...')
-    main()
+
+    mains()
