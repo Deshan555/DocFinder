@@ -16,9 +16,9 @@ class Gui:
 
              ui.Input(size=(45, 1), focus=True, key="TERM"),
 
-             ui.Radio('Contains', group_id='choice', key="CONTAINS"),
+             ui.Radio('Contains', group_id='choice', key="CONTAINS", default=True),
 
-             ui.Radio('StartsWith', group_id='choice', key="STARTSWITH", default=True),
+             ui.Radio('StartsWith', group_id='choice', key="STARTSWITH"),
 
              ui.Radio('EndsWith', group_id='choice', key="ENDSWITH")],
 
@@ -109,23 +109,35 @@ class file_finder:
                 file_source.write(row + '\n')
 
 
-
-def test_file():
-
-    frozen = file_finder()
-
-    frozen.new_index('c:/')
-
-    frozen.search('Android')
-
-def test_gui():
-
-    gui = Gui()
+def main():
+    ''' The main loop for the program '''
+    g = Gui()
+    s = file_finder()
+    s.load_existing_index() # load if exists, otherwise return empty list
 
     while True:
+        event, values = g.window.read()
 
-        event, values = gui.window.Read()
+        if event is None:
+            break
+        if event == 'REINDEX_DATA':
+            s.new_index(values)
+            print()
+            print(">> New index created")
+            print()
+        if event == 'FINDER':
+            s.search(values)
 
-        print(event, values)
+            # print the results to output element
+            print()
+            for result in s.results:
+                print(result)
 
-test_gui()
+            print()
+            print(">> Searched {:,d} records and found {:,d} matches".format(s.records, s.matches))
+            print(">> Results saved in working directory as search_results.txt.")
+
+
+if __name__ == '__main__':
+    print('Starting program...')
+    main()
