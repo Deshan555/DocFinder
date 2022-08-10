@@ -50,9 +50,11 @@ class file_finder:
 
         self.records = 0
 
-    def new_index(self, root_path):
+    def new_index(self, values):
 
         """" create new index file and save that file """
+
+        root_path = values['FOLDER_PATH']
 
         self.file_index = [(root, files) for root, dirs, files in os.walk(root_path) if files]
 
