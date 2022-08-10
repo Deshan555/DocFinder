@@ -4,13 +4,15 @@ import pickle
 
 import PySimpleGUI as ui
 
+ui.change_look_and_feel('Dark')
+
 
 class Gui:
 
     def __init__(self):
 
         self.layout = [
-            [ui.Text("Search Term"), ui.Input(),
+            [ui.Text("Search Term", size=(10, 1)), ui.Input(size=(45, 1), focus=True),
 
              ui.Radio('Contains', group_id='choice'),
 
@@ -18,7 +20,15 @@ class Gui:
 
              ui.Radio('EndsWith', group_id='choice')],
 
-             [ui.Text('Root Path'), ui.FolderBrowse('Browse'), ui.Button('Re-Index'), ui.Button('Search')],
+             [ui.Text('Root Path', size=(10, 1)),
+
+              ui.Input('c:/', size=(45, 1)),
+
+              ui.FolderBrowse('Browse'),
+
+              ui.Button('Re-Index', size=(10, 1)),
+
+              ui.Button('Search', size=(10, 1), bind_return_key=True)],
 
              [ui.Output(size=(180, 40))]
         ]
