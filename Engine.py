@@ -9,7 +9,17 @@ class Gui:
 
     def __init__(self):
 
-        self.layout = ''
+        self.layout = [
+            [ui.Text("Search Term"), ui.Input(),
+
+             ui.Radio('Contains', group_id='choice'),
+
+             ui.Radio('StartsWith', group_id='choice'),
+
+             ui.Radio('EndsWith', group_id='choice')],
+
+             [ui.Text('Root Path'), ui.FolderBrowse('Browse'), ui.Button('Re-Index'), ui.Button('Search')]
+        ]
 
         self.window = ui.Window('Finder').Layout(self.layout)
 
@@ -90,4 +100,10 @@ def test_file():
 
     frozen.search('Android')
 
-test_file()
+def test_gui():
+
+    gui = Gui()
+
+    gui.window.Read()
+
+test_gui()
