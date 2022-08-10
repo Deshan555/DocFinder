@@ -18,7 +18,7 @@ class Gui:
 
              ui.Radio('Contains', group_id='choice', key="CONTAINS"),
 
-             ui.Radio('StartsWith', group_id='choice', key="STARTSWITH"),
+             ui.Radio('StartsWith', group_id='choice', key="STARTSWITH", default=True),
 
              ui.Radio('EndsWith', group_id='choice', key="ENDSWITH")],
 
