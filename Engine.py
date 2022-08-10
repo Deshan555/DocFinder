@@ -73,7 +73,7 @@ class file_finder:
         except:
             self.file_index = []
 
-    def search(self, term, search_options='contains'):
+    def search(self, val_dic):
 
         self.results.clear()
 
@@ -81,15 +81,17 @@ class file_finder:
 
         self.records = 0
 
+        term = val_dic['TERM']
+
         for path, files in self.file_index:
 
             for file in files:
 
                 self.records += 1
 
-                if (search_options == 'contains' and term.lower() in file.lower() or
-                        search_options == 'startswith' and file.lower().startswith(term.lower()) or
-                        search_options == 'endswith' and file.lower().endswith(term.lower())):
+                if (val_dic['CONTAINS'] and term.lower() in file.lower() or
+                        val_dic['STARTSWITH'] and file.lower().startswith(term.lower()) or
+                        val_dic['ENDSWITH'] and file.lower().endswith(term.lower())):
 
                     result = path.replace('\\', '/') + '/' + file
 
