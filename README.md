@@ -27,11 +27,7 @@ PySimpleGUI Documentation : https://www.pysimplegui.org/en/latest/
 
 - Search results are both printed to screen and exported to a text file in the working directory.
 
-### Demo
+### Screenshots
 
-
-
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/Deshan555/DocFinder/blob/master/demo.png)
 
