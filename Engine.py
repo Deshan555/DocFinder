@@ -12,4 +12,8 @@ class file_finder:
 
         self.results = []
 
+        self.matches = 0
+
+        self.records = 0
+
 
