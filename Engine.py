@@ -38,3 +38,9 @@ class file_finder:
 
     def search(self, term, search_options = 'contains'):
 
+        self.results.clear()
+
+        self.matches = 0
+
+        self.records = 0
+
